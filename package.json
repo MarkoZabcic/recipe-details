@@ -1,7 +1,7 @@
 {
   "name": "mediasite-recipe-details",
   "private": false,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple web recipe-details",
   "main": "my-element.js",
   "module": "my-element.js",
@@ -70,7 +70,15 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "customElements": "custom-elements.json",
-  "files":[
+  "files": [
     "my-element.js"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkoZabcic/recipe-details.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MarkoZabcic/recipe-details/issues"
+  },
+  "homepage": "https://github.com/MarkoZabcic/recipe-details#readme"
 }
