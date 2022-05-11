@@ -4,72 +4,34 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from 'lit';
 
-/**
- * An example element.
- *
- * @fires count-changed - Indicates when the count changes
- * @slot - This element has a slot
- * @csspart button - The button
- */
-export class MyElement extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        border: solid 1px gray;
-        padding: 16px;
-        max-width: 800px;
-      }
-    `;
+export class RecipeDetails extends LitElement {
+  createRenderRoot() { return this; }
+
+  static properties = {
+    duration: { type: Number },
+    cal: { type: Number }
+  };
+
+  get durationUnit() {
+    return this.duration > 60 ? 'h' : 'min';
   }
 
-  static get properties() {
-    return {
-      /**
-       * The name to say "Hello" to.
-       * @type {string}
-       */
-      name: {type: String},
+  get humanDuration() {
+    if (this.duration < 60) { return this.duration }
 
-      /**
-       * The number of times the button has been clicked.
-       * @type {number}
-       */
-      count: {type: Number},
-    };
-  }
-
-  constructor() {
-    super();
-    this.name = 'World';
-    this.count = 0;
+    return Math.round(this.duration / 60);
   }
 
   render() {
     return html`
-      <h1>${this.sayHello(this.name)}!</h1>
-      <button @click=${this._onClick} part="button">
-        Click Count: ${this.count}
-      </button>
-      <slot></slot>
-    `;
-  }
-
-  _onClick() {
-    this.count++;
-    this.dispatchEvent(new CustomEvent('count-changed'));
-  }
-
-  /**
-   * Formats a greeting
-   * @param name {string} The name to say "Hello" to
-   * @returns {string} A greeting directed at `name`
-   */
-  sayHello(name) {
-    return `Hello, ${name}`;
+              <span class="recipe-details">
+              <span><i class="far fa-clock"></i> <span class="ezinteger-field">${this.humanDuration}</span> ${this.durationUnit}</span>
+              <span><i class="fas fa-fire"></i> <span class="ezinteger-field">${this.cal}</span> cal</span>
+              </span>
+         `;
   }
 }
 
-window.customElements.define('my-element', MyElement);
+window.customElements.define('recipe-details', RecipeDetails);

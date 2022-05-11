@@ -8,15 +8,14 @@
     <script src="../node_modules/lit/polyfill-support.js"></script>
     <script type="module" src="../my-element.js"></script>
     <style>
-      p {
-        border: solid 1px blue;
+      recipe-details {
+        display: block;
         padding: 8px;
       }
     </style>
   </head>
   <body>
-    <my-element>
-      <p>This is child content</p>
-    </my-element>
+    <recipe-details duration="60" cal="200"></recipe-details>
+    <recipe-details duration="600" cal="200"></recipe-details>
   </body>
 </html>
